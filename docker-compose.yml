@@ -1,0 +1,9 @@
+services:
+  weather-bot:
+    env_file:
+      - .env
+    image: oven/bun:latest
+    working_dir: /src
+    ports:
+      - "3000:3000"
+    command: ["bun", "start"]
