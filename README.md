@@ -4,6 +4,6 @@
 
 - [ ] move rain functionality over from rust project
 - [ ] better error responses when something goes wrong
-- [ ] host on server at home
-- [ ] docker compose file for production
+- [x] host on server at home
+- [x] docker compose file for production
 - [ ] ui for weather updates
