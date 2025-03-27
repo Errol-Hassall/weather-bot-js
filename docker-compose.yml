@@ -1,9 +1,10 @@
 services:
   weather-bot:
-    env_file:
-      - .env
-    image: oven/bun:latest
-    working_dir: /src
+    container_name: weather-bot
+    build:
+      context: .
     ports:
-      - "3000:3000"
-    command: ["bun", "start"]
+      - "4111:3000"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+    env_file: .env
