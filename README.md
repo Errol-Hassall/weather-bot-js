@@ -1,11 +1,9 @@
-To install dependencies:
-```sh
-bun install
-```
+## JS version of my weather bot
 
-To run:
-```sh
-bun run dev
-```
+## TODO
 
-open http://localhost:3000
+- [ ] move rain functionality over from rust project
+- [ ] better error responses when something goes wrong
+- [ ] host on server at home
+- [ ] docker compose file for production
+- [ ] ui for weather updates
