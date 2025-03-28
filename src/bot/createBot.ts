@@ -11,10 +11,6 @@ export const createBot = () => {
 }
 
 const constructBotCommands = ( bot: Telegraf<Context<Update>>) => {
-    bot.command('help', async (ctx) => {
-        await ctx.sendMessage("Help im a fucking bot")
-    })
-
     bot.command('forecast', async (ctx) => {
         const location = ctx.payload
 
