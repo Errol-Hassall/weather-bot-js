@@ -2,8 +2,11 @@ import { Context, Telegraf } from "telegraf";
 import { Update } from "telegraf/typings/core/types/typegram";
 import { formatWeeklyForecast, getSevenDayForecast, type SevenDayForecastResponse } from "../weather";
 
+const CHANNEL_ID = process.env.CHANNEL_ID!;
+const BOT_TOKEN = process.env.BOT_TOKEN!;
+
 export const createBot = () => {
-    const bot = new Telegraf(process.env.BOT_TOKEN!)
+    const bot = new Telegraf(BOT_TOKEN)
 
     constructBotCommands(bot)
 
@@ -21,11 +24,15 @@ const constructBotCommands = ( bot: Telegraf<Context<Update>>) => {
         const response = await getSevenDayForecast(location)
 
         if(typeof response === "string") {
-            return await ctx.sendMessage("There was an error getting the weather report")
+            return await ctx.sendMessage(response)
         }
 
         const message = formatWeeklyForecast(response)
 
         return await ctx.sendMessage(message)
     })
+}
+
+export const sendOneOffMessage = async (bot: Telegraf<Context<Update>>, message: string) => {
+    await bot.telegram.sendMessage(CHANNEL_ID, message)
 }
