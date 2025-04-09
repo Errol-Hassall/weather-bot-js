@@ -7,4 +7,5 @@
 - [x] host on server at home
 - [x] docker compose file for production
 - [ ] ui for weather updates
+- [x] get daily forecast
 - [x] refactor the bot logic into a separate module

@@ -48,6 +48,37 @@ export const formatWeeklyForecast = (forecast: SevenDayForecastResponse): string
     return message;
 }
 
+
+export type DailyForecastResponse = {
+    daily: Daily
+}
+
+export const getDailyForecast = async (location: string) => {
+    if(!location) {
+        return "No location provided"
+    }
+
+    const {results} = await getLatLongForLocation(location)
+
+    if (!results) {
+        return "No location found"
+    }
+
+    // usually we want the first response
+    const { latitude, longitude, timezone } = results[0]
+
+    const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=${timezone}&forecast_days=1`
+
+    return await makeWeatherApiCall<DailyForecastResponse>(forecastUrl)
+}
+
+
+export const formatDailyForecast = (forecast: SevenDayForecastResponse): string => {
+    const { temperature_2m_min: min, temperature_2m_max: max, precipitation_probability_max: rain } = forecast.daily;
+
+    return `Today will have a max temperature of ${max[0]} and a minimum temperature of ${min[0]}. There is a ${rain[0]}% chance of rain.`;
+}
+
 export type CoordinatesResult = {
     id: number,
     name: string,
