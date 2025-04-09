@@ -5,7 +5,6 @@ import {
     formatWeeklyForecast,
     getDailyForecast,
     getSevenDayForecast,
-    type SevenDayForecastResponse
 } from "../weather";
 
 const CHANNEL_ID = process.env.CHANNEL_ID!;
